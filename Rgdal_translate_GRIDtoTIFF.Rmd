@@ -1,0 +1,29 @@
+---
+title: "Gdal_Translate_TIF"
+author: "Erik Bethke"
+date: "June 14, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Install gdalUtils if not already done so.
+if (!is.element("gdalUtils", installed.packages()[,1]))
+    install.packages("gdalUtils", dependencies = TRUE)
+  require("gdalUtils", character.only = TRUE)
+
+# Install tcltk if not already done so.
+if (!is.element("tcltk", installed.packages()[,1]))
+    install.packages("tcltk", dependencies = TRUE)
+  require("tcltk", character.only = TRUE)
+
+# Establish directories. Note that sometimes this dropdown selection GUI appears behind RStudio when run.
+input_dir = tk_choose.dir(caption = "Select Input Folder")
+output_dir = tk_choose.dir(caption = "Select Output Folder")
+
+# Batch translate. May appear to not work if there are files besides .grd, but will run fine anyway.
+batch_gdal_translate(infiles = input_dir, outdir = output_dir, outsuffix=".tif")
+```
