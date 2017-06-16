@@ -1,9 +1,9 @@
 ; AutoHotkey Version: AutoHotkey 1.1
 ; Language:           English
-; Platform:           Win7 SP1 / Win8.1 / Win10
+; Platform:           Win10
 ; Author:             Erik Bethke
-; Short description:  Gets the URL of the current (active) browser tab for the GeoNode layer webpage, then navigates to various pages
-; Last Mod:           2017-06-09
+; Short description:  AutoHotkey Script that creates different shortcuts to navigate through GeoNode-Gfdrrlab.org
+; Last Mod:           2017-06-16
 
 Menu, Tray, Icon, % A_WinDir "\system32\netshell.dll", 86 ; Shows a world icon in the system tray
 
@@ -51,4 +51,19 @@ Return
     Send ^v
     Sleep 50
     Send {Enter}
+Return
+
+; Update metadata autoclick , (Alt + E)
+!e::
+    Send ^+j
+    Sleep 500
+    Send, form = document.getElementById("layer_metadata_update")
+    Sleep 50
+    Send, {Enter}
+    Sleep 500
+    Send, form.submit()
+    Sleep 50
+    Send, {Enter}
+    Sleep 500
+    Send ^+j
 Return
